@@ -32,20 +32,15 @@ const TabPage = () => {
   }
 
   return (
-    <div>
-      <div className="flex items-center">
-        <Navbar
-          tabs={tabs}
-          onSortTabs={handleSortTabs}
-          handleDeleteTab={handleDeleteTab}
-        />
-        <button
-          onClick={handleAddTab}
-          className="font-normal text-4xl ml-2 pb-2"
-        >
-          +
-        </button>
-      </div>
+    <div className="container mx-auto flex items-center overflow-x-auto">
+      <Navbar
+        tabs={tabs}
+        onSortTabs={handleSortTabs}
+        handleDeleteTab={handleDeleteTab}
+      />
+      <button onClick={handleAddTab} className="font-normal text-4xl ml-2 pb-2">
+        +
+      </button>
     </div>
   );
 };

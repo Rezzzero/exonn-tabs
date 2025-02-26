@@ -10,7 +10,7 @@ export default function Home() {
     useTabActions(setTabs);
 
   return (
-    <div className="flex items-center">
+    <div className="container mx-auto flex items-center overflow-x-auto">
       <Navbar
         tabs={tabs}
         onSortTabs={handleSortTabs}
