@@ -1,10 +1,10 @@
 "use client";
 
 import { Navbar } from "@components/Navbar";
-import { useState } from "react";
+import { useTabsStorage } from "./storage/useTabStorage";
 
 export default function Home() {
-  const [tabs, setTabs] = useState<string[]>([]);
+  const { tabs, setTabs } = useTabsStorage();
 
   const handleAddTab = () => {
     const newTab = `Tab ${new Date().getTime()}`;
@@ -16,9 +16,9 @@ export default function Home() {
   };
 
   return (
-    <div>
-      <button onClick={handleAddTab}>Add Tab</button>
+    <div className="flex">
       <Navbar tabs={tabs} onSortTabs={handleSortTabs} />
+      <button onClick={handleAddTab}>Add Tab</button>
     </div>
   );
 }

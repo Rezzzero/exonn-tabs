@@ -20,7 +20,6 @@ export const Navbar = ({
 
       if (oldIndex !== newIndex) {
         const updatedTabs = arrayMove(tabs, oldIndex, newIndex);
-        console.log("Updated tabs after drag:", updatedTabs);
         onSortTabs(updatedTabs);
       }
     }
@@ -28,7 +27,7 @@ export const Navbar = ({
   return (
     <DndContext onDragEnd={handleSortEnd}>
       <SortableContext items={tabs}>
-        <div>
+        <div className="flex">
           {tabs.map((item, index) => (
             <Tab key={item} tab={item}>
               {item}
