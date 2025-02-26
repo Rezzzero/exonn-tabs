@@ -5,6 +5,7 @@ import { useSortable } from "@dnd-kit/sortable";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { TabType } from "../types";
 
 export const Tab = ({
   tab,
@@ -14,7 +15,7 @@ export const Tab = ({
   closeContextMenu,
   onChangeTabFixed,
 }: {
-  tab: { title: string; url: string; fixed: boolean };
+  tab: TabType;
   children: React.ReactNode;
   onContextMenu: () => void;
   showContextMenu: boolean;
@@ -65,14 +66,14 @@ export const Tab = ({
             }px, 0)`,
             opacity: isDragging ? 0.5 : 1,
             backgroundColor: isDragging ? "#7F858D" : "#F4F7F9",
-            color: isDragging ? "white" : "black",
             cursor: "grab",
           }}
-          className={`flex items-center px-7 py-4 text-gray-500 hover:text-black cursor-pointer ${
-            pathname?.endsWith(tab.url)
-              ? "border-t-2 border-blue-500 text-black"
-              : ""
-          }`}
+          className={`flex items-center font-medium
+             px-7 py-4 cursor-pointer ${
+               pathname?.endsWith(tab.url)
+                 ? "border-t-2 border-blue-500 text-black"
+                 : "hover:text-black"
+             } ${isDragging ? "text-white" : "text-gray-500"}`}
         >
           <SettingsIcon />
           {!tab.fixed && children}

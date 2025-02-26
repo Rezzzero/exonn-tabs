@@ -4,12 +4,13 @@ import { Tab } from "@components/Tab";
 import { DndContext } from "@dnd-kit/core";
 import { arrayMove, SortableContext } from "@dnd-kit/sortable";
 import React, { useState } from "react";
+import { TabType } from "../types";
 
 export const Navbar = ({
   tabs,
   onSortTabs,
 }: {
-  tabs: { title: string; url: string; fixed: boolean }[];
+  tabs: TabType[];
   onSortTabs: (
     sortedTabs: { title: string; url: string; fixed: boolean }[]
   ) => void;
