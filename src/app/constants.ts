@@ -1,0 +1,15 @@
+export const words = [
+  "Dashboard",
+  "Banking",
+  "Telefonie",
+  "Accounting",
+  "Verkauf",
+  "Statistik",
+  "Post Office",
+  "Administration",
+  "Warenbestand",
+  "Auswahllisten",
+  "Einkauf",
+  "Rechn",
+  "Lagerverwaltung",
+];
