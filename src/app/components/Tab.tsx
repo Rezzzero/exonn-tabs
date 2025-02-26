@@ -92,13 +92,15 @@ export const Tab = ({
         </div>
       </Link>
       {!tab.fixed && (
-        <CloseIcon
-          onClick={(e) => {
-            e.preventDefault();
-            handleDeleteTab(tab.url);
-          }}
-          className="cursor-pointer"
-        />
+        <div className="bg-red-500 text-white text-xs opacity-0 hover:opacity-100 rounded-full">
+          <CloseIcon
+            onClick={(e) => {
+              e.preventDefault();
+              handleDeleteTab(tab.url);
+            }}
+            className="cursor-pointer"
+          />
+        </div>
       )}
 
       {showContextMenu && (
