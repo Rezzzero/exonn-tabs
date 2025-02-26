@@ -74,7 +74,8 @@ export const Tab = ({
               transform?.y ?? 0
             }px, 0)`,
             opacity: isDragging ? 0.5 : 1,
-            backgroundColor: isDragging ? "#7F858D" : "#F4F7F9",
+            backgroundColor: isDragging ? "#7F858D" : "",
+            color: isDragging ? "white" : "",
             cursor: "grab",
           }}
           className={`flex items-center gap-2 font-medium
