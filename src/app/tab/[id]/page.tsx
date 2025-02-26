@@ -8,7 +8,8 @@ import { useTabActions } from "../../hooks/useTabHelper";
 
 const TabPage = () => {
   const { tabs, setTabs } = useTabsStorage();
-  const { handleAddTab, handleSortTabs } = useTabActions(setTabs);
+  const { handleAddTab, handleSortTabs, handleDeleteTab } =
+    useTabActions(setTabs);
 
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -33,8 +34,15 @@ const TabPage = () => {
   return (
     <div>
       <div className="flex items-center">
-        <Navbar tabs={tabs} onSortTabs={handleSortTabs} />
-        <button onClick={handleAddTab} className="font-medium text-2xl">
+        <Navbar
+          tabs={tabs}
+          onSortTabs={handleSortTabs}
+          handleDeleteTab={handleDeleteTab}
+        />
+        <button
+          onClick={handleAddTab}
+          className="font-normal text-4xl ml-2 pb-2"
+        >
           +
         </button>
       </div>

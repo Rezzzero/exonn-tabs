@@ -18,9 +18,14 @@ export const useTabActions = (
     setTabs((prev) => [...prev, newTab]);
   };
 
+  const handleDeleteTab = (tabUrl: string) => {
+    console.log(tabUrl, "has been deleted");
+    setTabs((prev) => prev.filter((tab) => tab.url !== tabUrl));
+  };
+
   const handleSortTabs = (sortedTabs: TabType[]) => {
     setTabs(sortedTabs);
   };
 
-  return { handleAddTab, handleSortTabs };
+  return { handleAddTab, handleSortTabs, handleDeleteTab };
 };

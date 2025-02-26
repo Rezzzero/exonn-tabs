@@ -1,6 +1,7 @@
 "use client";
 
 import SettingsIcon from "@mui/icons-material/Settings";
+import CloseIcon from "@mui/icons-material/Close";
 import { useSortable } from "@dnd-kit/sortable";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -14,6 +15,9 @@ export const Tab = ({
   showContextMenu,
   closeContextMenu,
   onChangeTabFixed,
+  handleDeleteTab,
+  onMouseEnter,
+  onMouseLeave,
 }: {
   tab: TabType;
   children: React.ReactNode;
@@ -21,6 +25,9 @@ export const Tab = ({
   showContextMenu: boolean;
   closeContextMenu: () => void;
   onChangeTabFixed: (tabUrl: string) => void;
+  handleDeleteTab: (tabUrl: string) => void;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
 }) => {
   const { attributes, listeners, setNodeRef, transform, isDragging } =
     useSortable({ id: tab.url });
@@ -50,9 +57,11 @@ export const Tab = ({
   if (!mounted) return null;
 
   return (
-    <div ref={tabRef}>
+    <div ref={tabRef} className="flex items-center">
       <Link href={`/tab/${tab.url}`} passHref>
         <div
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
           ref={setNodeRef}
           {...listeners}
           {...attributes}
@@ -68,17 +77,29 @@ export const Tab = ({
             backgroundColor: isDragging ? "#7F858D" : "#F4F7F9",
             cursor: "grab",
           }}
-          className={`flex items-center font-medium
+          className={`flex items-center gap-2 font-medium
              px-7 py-4 cursor-pointer ${
-               pathname?.endsWith(tab.url)
-                 ? "border-t-2 border-blue-500 text-black"
-                 : "hover:text-black"
-             } ${isDragging ? "text-white" : "text-gray-500"}`}
+               tab.fixed ? "border-t-2 border-gray-500 rounded-t-sm" : ""
+             } ${
+            pathname?.endsWith(tab.url)
+              ? "border-t-2 border-blue-500 text-black rounded-t-sm"
+              : "hover:text-black"
+          } ${isDragging ? "text-white" : "text-gray-500"}`}
+          onClick={(e) => e.stopPropagation()}
         >
           <SettingsIcon />
           {!tab.fixed && children}
         </div>
       </Link>
+      {!tab.fixed && (
+        <CloseIcon
+          onClick={(e) => {
+            e.preventDefault();
+            handleDeleteTab(tab.url);
+          }}
+          className="cursor-pointer"
+        />
+      )}
 
       {showContextMenu && (
         <div className="absolute bg-white border shadow rounded p-2 mt-2">
